@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/components/Results.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1777203784447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1777204461196,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n-export default function Results() {\n+export default function Results({ input }) {\n+\tconsole.log(input);\n \treturn (\n \t\t<section id=\"results\">\n \t\t\t<h2>Results</h2>\n \t\t</section>\n"
+                }
+            ],
+            "date": 1777203784447,
+            "name": "Commit-0",
+            "content": "export default function Results() {\n\treturn (\n\t\t<section id=\"results\">\n\t\t\t<h2>Results</h2>\n\t\t</section>\n\t);\n}\n"
+        }
+    ]
+}
