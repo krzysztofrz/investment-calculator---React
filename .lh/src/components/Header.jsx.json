@@ -1,0 +1,34 @@
+{
+    "sourceFile": "src/components/Header.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 4,
+            "patches": [
+                {
+                    "date": 1777200955628,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1777201105993,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,8 @@\n+export default function Header() {\n+\treturn (\n+\t\t<header>\n+\t\t\t<img src=\"/investment-calculator-logo.png\" alt=\"logo\" />\n+\t\t\t<h1>Investment Calculator</h1>\n+\t\t</header>\n+\t);\n+}\n"
+                },
+                {
+                    "date": 1777201297757,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n+import logo from \"../assets/investment-calculator-logo.png\";\n+\n export default function Header() {\n \treturn (\n \t\t<header>\n-\t\t\t<img src=\"/investment-calculator-logo.png\" alt=\"logo\" />\n+\t\t\t<img src={logo} />\n \t\t\t<h1>Investment Calculator</h1>\n \t\t</header>\n \t);\n }\n"
+                },
+                {
+                    "date": 1777201313417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,10 @@\n+import logo from \"../assets/investment-calculator-logo.png\";\n+\n+export default function Header() {\n+\treturn (\n+\t\t<header>\n+\t\t\t<img src={logo} alt=\"investment calculator logo\" />\n+\t\t\t<h1>Investment Calculator</h1>\n+\t\t</header>\n+\t);\n+}\n"
+                },
+                {
+                    "date": 1777201494583,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,27 +1,10 @@\n import logo from \"../assets/investment-calculator-logo.png\";\n \n export default function Header() {\n \treturn (\n-\t\t<header>\n+\t\t<header id=\"header\">\n \t\t\t<img src={logo} alt=\"investment calculator logo\" />\n \t\t\t<h1>Investment Calculator</h1>\n \t\t</header>\n \t);\n }\n-import logo from \"../assets/investment-calculator-logo.png\";\n-\n-export default function Header() {\n-\treturn (\n-\t\t<header>\n-\t\t\t<img src={logo} />\n-\t\t\t<h1>Investment Calculator</h1>\n-\t\t</header>\n-\t);\n-}\n-export default function Header() {\n-\treturn (\n-\t\t<header>\n-\t\t\t<h1>React Investment Calculator</h1>\n-\t\t</header>\n-\t);\n-}\n"
+                }
+            ],
+            "date": 1777200955628,
+            "name": "Commit-0",
+            "content": "export default function Header() {\n\treturn (\n\t\t<header>\n\t\t\t<h1>React Investment Calculator</h1>\n\t\t</header>\n\t);\n}\n"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "sourceFile": "src/App.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1777200982412,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1777201349901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n import Header from \"./components/Header\";\n function App() {\n \treturn (\n \t\t<>\n-\t\t\t<h1>React Investment Calculator</h1>\n \t\t\t<Header />\n \t\t</>\n \t);\n }\n"
+                },
+                {
+                    "date": 1777201419506,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import Header from \"./components/Header\";\n+import Header from \"./components/Header.jsx\";\n function App() {\n \treturn (\n \t\t<>\n \t\t\t<Header />\n"
+                }
+            ],
+            "date": 1777200982411,
+            "name": "Commit-0",
+            "content": "import Header from \"./components/Header\";\nfunction App() {\n\treturn (\n\t\t<>\n\t\t\t<h1>React Investment Calculator</h1>\n\t\t\t<Header />\n\t\t</>\n\t);\n}\n\nexport default App;\n"
+        }
+    ]
+}
