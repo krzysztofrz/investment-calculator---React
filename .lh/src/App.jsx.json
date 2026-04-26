@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 10,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1777200982412,
@@ -48,6 +48,38 @@
                 {
                     "date": 1777205956070,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n \tfunction handleChange(inputIdentifier, newValue) {\n \t\tsetUserInput((prevUserInput) => {\n \t\t\treturn {\n \t\t\t\t...prevUserInput,\n-\t\t\t\t[inputIdentifier]: newValue,\n+\t\t\t\t[inputIdentifier]: +newValue,\n \t\t\t};\n \t\t});\n \t}\n \n"
+                },
+                {
+                    "date": 1777207523708,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,35 +29,4 @@\n \t);\n }\n \n export default App;\n-import { useState } from \"react\";\n-import Header from \"./components/Header.jsx\";\n-import UserInput from \"./components/UserInput.jsx\";\n-\n-function App() {\n-\tconst [userInput, setUserInput] = useState({\n-\t\tinitialInvestment: 10000,\n-\t\tannualInvestment: 1200,\n-\t\texpectedReturn: 6,\n-\t\tduration: 10,\n-\t});\n-\n-\tfunction handleChange(inputIdentifier, newValue) {\n-\t\tsetUserInput((prevUserInput) => {\n-\t\t\treturn {\n-\t\t\t\t...prevUserInput,\n-\t\t\t\t[inputIdentifier]: newValue,\n-\t\t\t};\n-\t\t});\n-\t}\n-\n-\treturn (\n-\t\t<>\n-\t\t\t<Header />\n-\t\t\t<UserInput userInput={userInput} onChangeInput={handleChange} />\n-\t\t\t<Results input={userInput} />\n-\t\t</>\n-\t);\n-}\n-\n-export default App;\n"
+                },
+                {
+                    "date": 1777207530819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,10 @@\n \t\texpectedReturn: 6,\n \t\tduration: 10,\n \t});\n \n+  const \n+\n \tfunction handleChange(inputIdentifier, newValue) {\n \t\tsetUserInput((prevUserInput) => {\n \t\t\treturn {\n \t\t\t\t...prevUserInput,\n"
+                },
+                {
+                    "date": 1777207596682,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,13 @@\n \t\texpectedReturn: 6,\n \t\tduration: 10,\n \t});\n \n-  const \n+\tconst inputIsValid =\n+\t\tuserInput.initialInvestment > 0 &&\n+\t\tuserInput.annualInvestment > 0 &&\n+\t\tuserInput.expectedReturn > 0 &&\n+\t\tuserInput.duration > 0;\n \n \tfunction handleChange(inputIdentifier, newValue) {\n \t\tsetUserInput((prevUserInput) => {\n \t\t\treturn {\n"
+                },
+                {
+                    "date": 1777207627022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,10 @@\n \t\texpectedReturn: 6,\n \t\tduration: 10,\n \t});\n \n-\tconst inputIsValid =\n-\t\tuserInput.initialInvestment > 0 &&\n+\tconst inputIsValid = userInput.duration >= 1;\n+\tuserInput.initialInvestment > 0 &&\n \t\tuserInput.annualInvestment > 0 &&\n \t\tuserInput.expectedReturn > 0 &&\n \t\tuserInput.duration > 0;\n \n"
+                },
+                {
+                    "date": 1777207649552,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \treturn (\n \t\t<>\n \t\t\t<Header />\n \t\t\t<UserInput userInput={userInput} onChangeInput={handleChange} />\n-\t\t\t<Results input={userInput} />\n+\t\t\t{inputIsValid && <Results input={userInput} />}\n \t\t</>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1777207727463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,8 +29,9 @@\n \treturn (\n \t\t<>\n \t\t\t<Header />\n \t\t\t<UserInput userInput={userInput} onChangeInput={handleChange} />\n+      {!inputIsValid && <Please enter a duration greater than 0</p>}\n \t\t\t{inputIsValid && <Results input={userInput} />}\n \t\t</>\n \t);\n }\n"
+                },
+                {
+                    "date": 1777207766898,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \treturn (\n \t\t<>\n \t\t\t<Header />\n \t\t\t<UserInput userInput={userInput} onChangeInput={handleChange} />\n-      {!inputIsValid && <Please enter a duration greater than 0</p>}\n+\t\t\t{!inputIsValid && <p>Please enter a duration greater than 0</p>}\n \t\t\t{inputIsValid && <Results input={userInput} />}\n \t\t</>\n \t);\n }\n"
+                },
+                {
+                    "date": 1777207792989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,11 @@\n \treturn (\n \t\t<>\n \t\t\t<Header />\n \t\t\t<UserInput userInput={userInput} onChangeInput={handleChange} />\n-\t\t\t{!inputIsValid && <p>Please enter a duration greater than 0</p>}\n+\t\t\t{!inputIsValid && (\n+\t\t\t\t<p className=\"center\">Please enter a duration greater than 0</p>\n+\t\t\t)}\n \t\t\t{inputIsValid && <Results input={userInput} />}\n \t\t</>\n \t);\n }\n"
                 }
             ],
             "date": 1777200982411,
