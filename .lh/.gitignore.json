@@ -1,0 +1,18 @@
+{
+    "sourceFile": ".gitignore",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1777198277892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1777198277892,
+            "name": "Commit-0",
+            "content": "node_modules\ndist\nbuild\n\n.env\n.env.local\n.env.development.local\n.env.test.local\n.env.production.local\n\n.DS_Store\n.vscode\n.idea\n\nnpm-debug.log*\nyarn-debug.log*\nyarn-error.log*\npnpm-debug.log*"
+        }
+    ]
+}
