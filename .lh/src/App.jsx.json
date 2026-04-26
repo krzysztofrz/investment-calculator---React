@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 9,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1777200982412,
@@ -44,6 +44,10 @@
                 {
                     "date": 1777204486972,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,32 @@\n+import { useState } from \"react\";\n+import Header from \"./components/Header.jsx\";\n+import UserInput from \"./components/UserInput.jsx\";\n+import Results from \"./components/Results.jsx\";\n+\n+function App() {\n+\tconst [userInput, setUserInput] = useState({\n+\t\tinitialInvestment: 10000,\n+\t\tannualInvestment: 1200,\n+\t\texpectedReturn: 6,\n+\t\tduration: 10,\n+\t});\n+\n+\tfunction handleChange(inputIdentifier, newValue) {\n+\t\tsetUserInput((prevUserInput) => {\n+\t\t\treturn {\n+\t\t\t\t...prevUserInput,\n+\t\t\t\t[inputIdentifier]: newValue,\n+\t\t\t};\n+\t\t});\n+\t}\n+\n+\treturn (\n+\t\t<>\n+\t\t\t<Header />\n+\t\t\t<UserInput userInput={userInput} onChangeInput={handleChange} />\n+\t\t\t<Results input={userInput} />\n+\t\t</>\n+\t);\n+}\n+\n+export default App;\n"
+                },
+                {
+                    "date": 1777205956070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n \tfunction handleChange(inputIdentifier, newValue) {\n \t\tsetUserInput((prevUserInput) => {\n \t\t\treturn {\n \t\t\t\t...prevUserInput,\n-\t\t\t\t[inputIdentifier]: newValue,\n+\t\t\t\t[inputIdentifier]: +newValue,\n \t\t\t};\n \t\t});\n \t}\n \n"
                 }
             ],
             "date": 1777200982411,
