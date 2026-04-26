@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 5,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1777203784447,
@@ -28,6 +28,74 @@
                 {
                     "date": 1777205199276,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n \n export default function Results({ input }) {\n \tconsole.log(input);\n \tconst resultsData = calculateInvestmentResults(input);\n+\tconsole.log(resultsData);\n \treturn (\n \t\t<section id=\"results\">\n \t\t\t<h2>Results</h2>\n \t\t</section>\n"
+                },
+                {
+                    "date": 1777206179676,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,25 @@\n \tconsole.log(input);\n \tconst resultsData = calculateInvestmentResults(input);\n \tconsole.log(resultsData);\n \treturn (\n-\t\t<section id=\"results\">\n-\t\t\t<h2>Results</h2>\n-\t\t</section>\n+\t\t<table id=\"results\">\n+\t\t\t<thead>\n+\t\t\t\t<tr>\n+\t\t\t\t\t<th>Year</th>\n+\t\t\t\t\t<th>Investment Value</th>\n+\t\t\t\t\t<th>Interest (Year)</th>\n+\t\t\t\t\t<th>Total Savings End of Year</th>\n+\t\t\t\t\t<th>Annual Investment</th>\n+\t\t\t\t</tr>\n+\t\t\t</thead>\n+\t\t\t<tbody>\n+\t\t\t\t{resultsData.map((yearData) => (\n+\t\t\t\t\t<tr key={yearData.year}>\n+\t\t\t\t\t\t<td>{yearData.year}</td>\n+\t\t\t\t\t\t<td>{yearData.valueEndOfYear}</td>\n+\t\t\t\t\t</tr>\n+\t\t\t\t))}\n+\t\t\t</tbody>\n+\t\t</table>\n \t);\n }\n"
+                },
+                {
+                    "date": 1777206316307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,11 @@\n \t\t\t\t{resultsData.map((yearData) => (\n \t\t\t\t\t<tr key={yearData.year}>\n \t\t\t\t\t\t<td>{yearData.year}</td>\n \t\t\t\t\t\t<td>{yearData.valueEndOfYear}</td>\n+\t\t\t\t\t\t<td>{yearData.interest}</td>\n+\t\t\t\t\t\t<td>{yearData.valueEndOfYear}</td>\n+\t\t\t\t\t\t<td>{yearData.annualInvestment}</td>\n \t\t\t\t\t</tr>\n \t\t\t\t))}\n \t\t\t</tbody>\n \t\t</table>\n"
+                },
+                {
+                    "date": 1777206395592,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { calculateInvestmentResults } from \"../util/investment.js\";\n+import { calculateInvestmentResults, formatter } from \"../util/investment.js\";\n \n export default function Results({ input }) {\n \tconsole.log(input);\n \tconst resultsData = calculateInvestmentResults(input);\n"
+                },
+                {
+                    "date": 1777206420660,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,13 +17,13 @@\n \t\t\t</thead>\n \t\t\t<tbody>\n \t\t\t\t{resultsData.map((yearData) => (\n \t\t\t\t\t<tr key={yearData.year}>\n-\t\t\t\t\t\t<td>{yearData.year}</td>\n-\t\t\t\t\t\t<td>{yearData.valueEndOfYear}</td>\n-\t\t\t\t\t\t<td>{yearData.interest}</td>\n-\t\t\t\t\t\t<td>{yearData.valueEndOfYear}</td>\n-\t\t\t\t\t\t<td>{yearData.annualInvestment}</td>\n+\t\t\t\t\t\t<td>{formatter.format(yearData.year)}</td>\n+\t\t\t\t\t\t<td>{formatter.format(yearData.valueEndOfYear)}</td>\n+\t\t\t\t\t\t<td>{formatter.format(yearData.interest)}</td>\n+\t\t\t\t\t\t<td>{formatter.format(yearData.valueEndOfYear)}</td>\n+\t\t\t\t\t\t<td>{formatter.format(yearData.annualInvestment)}</td>\n \t\t\t\t\t</tr>\n \t\t\t\t))}\n \t\t\t</tbody>\n \t\t</table>\n"
+                },
+                {
+                    "date": 1777206444526,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n \tconsole.log(input);\n \tconst resultsData = calculateInvestmentResults(input);\n \tconsole.log(resultsData);\n \treturn (\n-\t\t<table id=\"results\">\n+\t\t<table id=\"result\">\n \t\t\t<thead>\n \t\t\t\t<tr>\n \t\t\t\t\t<th>Year</th>\n \t\t\t\t\t<th>Investment Value</th>\n"
+                },
+                {
+                    "date": 1777206682757,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n export default function Results({ input }) {\n \tconsole.log(input);\n \tconst resultsData = calculateInvestmentResults(input);\n \tconsole.log(resultsData);\n+\tconst initialInvestment = input.initialInvestment;\n \treturn (\n \t\t<table id=\"result\">\n \t\t\t<thead>\n \t\t\t\t<tr>\n"
+                },
+                {
+                    "date": 1777206752844,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,12 @@\n export default function Results({ input }) {\n \tconsole.log(input);\n \tconst resultsData = calculateInvestmentResults(input);\n \tconsole.log(resultsData);\n-\tconst initialInvestment = input.initialInvestment;\n+\tconst initialInvestment =\n+\t\tresultsData[0].valueEndOfYear -\n+\t\tresultsData[0].interest -\n+\t\tresultsData[0].annualInvestment;\n \treturn (\n \t\t<table id=\"result\">\n \t\t\t<thead>\n \t\t\t\t<tr>\n"
+                },
+                {
+                    "date": 1777206813273,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,17 +19,19 @@\n \t\t\t\t\t<th>Annual Investment</th>\n \t\t\t\t</tr>\n \t\t\t</thead>\n \t\t\t<tbody>\n-\t\t\t\t{resultsData.map((yearData) => (\n-\t\t\t\t\t<tr key={yearData.year}>\n-\t\t\t\t\t\t<td>{formatter.format(yearData.year)}</td>\n-\t\t\t\t\t\t<td>{formatter.format(yearData.valueEndOfYear)}</td>\n-\t\t\t\t\t\t<td>{formatter.format(yearData.interest)}</td>\n-\t\t\t\t\t\t<td>{formatter.format(yearData.valueEndOfYear)}</td>\n-\t\t\t\t\t\t<td>{formatter.format(yearData.annualInvestment)}</td>\n-\t\t\t\t\t</tr>\n-\t\t\t\t))}\n+\t\t\t\t{resultsData.map((yearData) => {\n+\t\t\t\t\treturn (\n+\t\t\t\t\t\t<tr key={yearData.year}>\n+\t\t\t\t\t\t\t<td>{formatter.format(yearData.year)}</td>\n+\t\t\t\t\t\t\t<td>{formatter.format(yearData.valueEndOfYear)}</td>\n+\t\t\t\t\t\t\t<td>{formatter.format(yearData.interest)}</td>\n+\t\t\t\t\t\t\t<td>{formatter.format(yearData.valueEndOfYear)}</td>\n+\t\t\t\t\t\t\t<td>{formatter.format(yearData.annualInvestment)}</td>\n+\t\t\t\t\t\t</tr>\n+\t\t\t\t\t);\n+\t\t\t\t})}\n \t\t\t</tbody>\n \t\t</table>\n \t);\n }\n"
+                },
+                {
+                    "date": 1777206849139,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,12 @@\n \t\t\t\t</tr>\n \t\t\t</thead>\n \t\t\t<tbody>\n \t\t\t\t{resultsData.map((yearData) => {\n+\t\t\t\t\tconst totalInterest =\n+\t\t\t\t\t\tyearData.valueEndOfYear -\n+\t\t\t\t\t\tinitialInvestment -\n+\t\t\t\t\t\tyearData.annualInvestment * yearData.year;\n \t\t\t\t\treturn (\n \t\t\t\t\t\t<tr key={yearData.year}>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.year)}</td>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.valueEndOfYear)}</td>\n"
+                },
+                {
+                    "date": 1777206896144,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,10 +22,10 @@\n \t\t\t<tbody>\n \t\t\t\t{resultsData.map((yearData) => {\n \t\t\t\t\tconst totalInterest =\n \t\t\t\t\t\tyearData.valueEndOfYear -\n-\t\t\t\t\t\tinitialInvestment -\n-\t\t\t\t\t\tyearData.annualInvestment * yearData.year;\n+\t\t\t\t\t\tyearData.initialInvestment * yearData.year -\n+\t\t\t\t\t\tinitialInvestment;\n \t\t\t\t\treturn (\n \t\t\t\t\t\t<tr key={yearData.year}>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.year)}</td>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.valueEndOfYear)}</td>\n"
+                },
+                {
+                    "date": 1777206922767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \t\t\t\t\t\t<tr key={yearData.year}>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.year)}</td>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.valueEndOfYear)}</td>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.interest)}</td>\n-\t\t\t\t\t\t\t<td>{formatter.format(yearData.valueEndOfYear)}</td>\n+\t\t\t\t\t\t\t<td>{formatter.format(totalInterest)}</td>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.annualInvestment)}</td>\n \t\t\t\t\t\t</tr>\n \t\t\t\t\t);\n \t\t\t\t})}\n"
+                },
+                {
+                    "date": 1777206975358,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n \t\t\t<tbody>\n \t\t\t\t{resultsData.map((yearData) => {\n \t\t\t\t\tconst totalInterest =\n \t\t\t\t\t\tyearData.valueEndOfYear -\n-\t\t\t\t\t\tyearData.initialInvestment * yearData.year -\n+\t\t\t\t\t\tyearData.anualInvestment * yearData.year -\n \t\t\t\t\t\tinitialInvestment;\n \t\t\t\t\treturn (\n \t\t\t\t\t\t<tr key={yearData.year}>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.year)}</td>\n"
+                },
+                {
+                    "date": 1777207036598,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n \t\t\t\t\t\tyearData.anualInvestment * yearData.year -\n \t\t\t\t\t\tinitialInvestment;\n \t\t\t\t\treturn (\n \t\t\t\t\t\t<tr key={yearData.year}>\n-\t\t\t\t\t\t\t<td>{formatter.format(yearData.year)}</td>\n+\t\t\t\t\t\t\t<td>{yearData.year}</td>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.valueEndOfYear)}</td>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.interest)}</td>\n \t\t\t\t\t\t\t<td>{formatter.format(totalInterest)}</td>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.annualInvestment)}</td>\n"
+                },
+                {
+                    "date": 1777207144565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n \t\t\t<tbody>\n \t\t\t\t{resultsData.map((yearData) => {\n \t\t\t\t\tconst totalInterest =\n \t\t\t\t\t\tyearData.valueEndOfYear -\n-\t\t\t\t\t\tyearData.anualInvestment * yearData.year -\n+\t\t\t\t\t\tyearData.annualInvestment * yearData.year -\n \t\t\t\t\t\tinitialInvestment;\n \t\t\t\t\treturn (\n \t\t\t\t\t\t<tr key={yearData.year}>\n \t\t\t\t\t\t\t<td>{yearData.year}</td>\n"
+                },
+                {
+                    "date": 1777207209355,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,10 @@\n \t\t\t\t\tconst totalInterest =\n \t\t\t\t\t\tyearData.valueEndOfYear -\n \t\t\t\t\t\tyearData.annualInvestment * yearData.year -\n \t\t\t\t\t\tinitialInvestment;\n+\t\t\t\t\tconst totalAnnualInvestment =\n+\t\t\t\t\t\tyearData.annualInvestment * yearData.year;\n \t\t\t\t\treturn (\n \t\t\t\t\t\t<tr key={yearData.year}>\n \t\t\t\t\t\t\t<td>{yearData.year}</td>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.valueEndOfYear)}</td>\n"
+                },
+                {
+                    "date": 1777207220756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n \t\t\t\t\t\t\t<td>{yearData.year}</td>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.valueEndOfYear)}</td>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.interest)}</td>\n \t\t\t\t\t\t\t<td>{formatter.format(totalInterest)}</td>\n-\t\t\t\t\t\t\t<td>{formatter.format(yearData.annualInvestment)}</td>\n+\t\t\t\t\t\t\t<td>{formatter.format(totalAnnualInvestment)}</td>\n \t\t\t\t\t\t</tr>\n \t\t\t\t\t);\n \t\t\t\t})}\n \t\t\t</tbody>\n"
+                },
+                {
+                    "date": 1777207307338,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,10 +24,9 @@\n \t\t\t\t\tconst totalInterest =\n \t\t\t\t\t\tyearData.valueEndOfYear -\n \t\t\t\t\t\tyearData.annualInvestment * yearData.year -\n \t\t\t\t\t\tinitialInvestment;\n-\t\t\t\t\tconst totalAnnualInvestment =\n-\t\t\t\t\t\tyearData.annualInvestment * yearData.year;\n+\t\t\t\t\tconst totalAnnualInvestment = yearData.valueEndOfYear - totalInterest;\n \t\t\t\t\treturn (\n \t\t\t\t\t\t<tr key={yearData.year}>\n \t\t\t\t\t\t\t<td>{yearData.year}</td>\n \t\t\t\t\t\t\t<td>{formatter.format(yearData.valueEndOfYear)}</td>\n"
                 }
             ],
             "date": 1777203784447,
